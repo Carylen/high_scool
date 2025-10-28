@@ -25,8 +25,8 @@ async def register(user: schemas.UserCreate, db: AsyncSession = Depends(get_db))
     await db.refresh(db_user)
     return db_user
 
-@router.post("/login", response_model=Token)
-async def login(user_login: UserLogin, db: AsyncSession = Depends(get_db)):
+@router.post("/login", response_model=schemas.Token)
+async def login(user_login: schemas.UserLogin, db: AsyncSession = Depends(get_db)):
     result = await db.execute(select(models.User).where(models.User.email == user_login.email))
     user = result.scalar_one_or_none()
     if not user or not verify_password(user_login.password, user.password_hash):
