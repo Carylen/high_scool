@@ -80,6 +80,9 @@
 #     run_migrations_online()
 
 # from logging.config import fileConfig
+from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).parent.parent))
 from sqlalchemy import engine_from_config, pool
 from alembic import context
 from app.core.config import DATABASE_URL
@@ -90,7 +93,6 @@ config.set_main_option('sqlalchemy.url', DATABASE_URL)
 
 # if config.config_file_name is not None:
 #     fileConfig(config.config_file_name)
-
 target_metadata = Base.metadata
 
 def run_migrations_offline():
