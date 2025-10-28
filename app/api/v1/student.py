@@ -3,7 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from datetime import date
 from app import models
-from app.database import get_db
+from app.database.db import get_db
 from app.core.deps import get_current_active_user
 
 router = APIRouter(prefix="/api/v1/student", tags=["student"])
